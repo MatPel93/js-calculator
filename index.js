@@ -1,8 +1,8 @@
 var readlineSync = require("readline-sync");
 
-var operator;
-var num1;
-var num2;
+let operator;
+let num1;
+let num2;
 
 function isOperator(input) {
   const validOp = ["+", "-", "*", "/"];
@@ -15,37 +15,37 @@ function getOperator() {
   );
 }
 
-function getNum1() {
-  num1 = readlineSync.questionInt("Please enter the first number. ");
+function getNum(promt) {
+  return readlineSync.questionInt(promt);
 }
 
-function getNum2() {
-  num2 = readlineSync.questionInt("Please enter the second number. ");
-}
-
-var calculation = () => {
+let calculation = () => {
   if (operator == "+") {
-    console.log("The result is: ", num1 + num2);
+    return num1 + num2;
   } else if (operator == "-") {
-    console.log("The result is: ", num1 - num2);
+    return num1 - num2;
   } else if (operator == "/") {
-    console.log("The result is: ", num1 / num2);
+    return num1 / num2;
   } else if (operator == "*") {
-    console.log("The result is: ", num1 * num2);
+    return num1 * num2;
   }
 };
 
-getOperator();
+const main = () => {
+  getOperator();
 
-while (!isOperator(operator)) {
-  if (!isOperator(operator)) {
-    console.log('That is not a vaild operation"');
-    getOperator();
-  } else {
+  while (!isOperator(operator)) {
+    if (!isOperator(operator)) {
+      console.log('That is not a vaild operation"');
+      getOperator();
+    } else {
+    }
   }
-}
 
-getNum1();
-getNum2();
+  num1 = getNum("Please enter the first number. ");
+  num2 = getNum("Please enter the second number. ");
 
-calculation();
+  console.log("The result is: " + calculation());
+};
+
+main();
